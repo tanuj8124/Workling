@@ -12,7 +12,7 @@ const WorkerDashboard = () => {
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const response = await axios.get('https://workling1829293.df.r.appspot.com/api/jobs', {
+        const response = await axios.get('https://workling-project-1.onrender.com/api/jobs', {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         });
         setJobs(response.data);
@@ -34,7 +34,7 @@ const WorkerDashboard = () => {
         return;
       }
 
-      await axios.post(`https://workling1829293.df.r.appspot.com/api/apply-job/${jobId}`, {}, {
+      await axios.post(`https://workling-project-1.onrender.com/api/apply-job/${jobId}`, {}, {
         headers: { Authorization: `Bearer ${token}` }
       });
       

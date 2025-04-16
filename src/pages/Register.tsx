@@ -30,7 +30,7 @@ const Register = () => {
         certificates: formData.certificates.split(',').map(cert => cert.trim())
       };
 
-      await axios.post('https://workling1829293.df.r.appspot.com/api/register', payload);
+      await axios.post('https://workling-project-1.onrender.com/api/register', payload);
       toast.success('Registration successful!');
       navigate('/login');
     } catch (error) {

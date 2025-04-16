@@ -44,10 +44,10 @@ const EmployerDashboard = () => {
         }
 
         if (activeTab === 'workers') {
-          const response = await axios.get('https://workling1829293.df.r.appspot.com/api/workers');
+          const response = await axios.get('https://workling-project-1.onrender.com/api/workers');
           setWorkers(response.data);
         } else {
-          const response = await axios.get('https://workling1829293.df.r.appspot.com/api/my-posted-jobs', {
+          const response = await axios.get('https://workling-project-1.onrender.com/api/my-posted-jobs', {
             headers: { Authorization: `Bearer ${token}` }
           });
           setJobApplicants(response.data.jobs);
@@ -85,7 +85,7 @@ const EmployerDashboard = () => {
         return;
       }
 
-      await axios.post('https://workling1829293.df.r.appspot.com/api/publish-job', jobForm, {
+      await axios.post('https://workling-project-1.onrender.com/api/publish-job', jobForm, {
         headers: { Authorization: `Bearer ${token}` }
       });
       toast.success('Job posted successfully!');
@@ -94,7 +94,7 @@ const EmployerDashboard = () => {
       
       // Refresh the job applicants list if we're on that tab
       if (activeTab === 'applicants') {
-        const response = await axios.get('https://workling1829293.df.r.appspot.com/api/my-job-applicants', {
+        const response = await axios.get('https://workling-project-1.onrender.com/api/my-job-applicants', {
           headers: { Authorization: `Bearer ${token}` }
         });
         setJobApplicants(response.data.jobs);
