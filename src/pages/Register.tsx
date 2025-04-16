@@ -5,6 +5,7 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 
 const Register = () => {
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -21,6 +22,7 @@ const Register = () => {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
+    setLoading(true);
     e.preventDefault();
     try {
       const payload = {
@@ -35,6 +37,8 @@ const Register = () => {
       navigate('/login');
     } catch (error) {
       toast.error('Registration failed. Please try again.');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -137,11 +141,35 @@ const Register = () => {
             )}
           </div>
 
+          
           <button
             type="submit"
-            className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700"
+            disabled={loading}
+            className="w-full flex justify-center items-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700"
           >
-            Register
+            {loading && (
+              <svg
+                className="animate-spin h-5 w-5 text-white mr-2"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                ></circle>
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8v8H4z"
+                ></path>
+              </svg>
+            )}
+            {loading ? 'Signing in...' : 'Register'}
           </button>
         </form>
       </motion.div>
